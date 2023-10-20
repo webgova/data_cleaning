@@ -16,8 +16,8 @@ def clean_date_format(date_column):
     for date in date_column:
         try:
             # Use pandas to automatically detect the date format
-            dt = pd.to_datetime(str(date))
-            cleaned_date = dt.strftime('%Y/%m/%d')
+            cleaned_date = pd.to_datetime(str(date))
+            # cleaned_date = dt.strftime('%Y/%m/%d')
         except:
             cleaned_date = "Invalid Date"
         cleaned_dates.append(cleaned_date)
@@ -31,7 +31,7 @@ def main():
     if uploaded_file:
         if uploaded_file.name.endswith('.csv'):
             encoding = detect_encoding(uploaded_file)
-            df = pd.read_csv(uploaded_file, encoding=encoding,delimiter=';')
+            df = pd.read_csv(uploaded_file, encoding=encoding,delimiter=',')
         else:
             df = pd.read_excel(uploaded_file, engine='openpyxl')
         
